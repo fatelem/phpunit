@@ -8,9 +8,8 @@
  * file that was distributed with this source code.
  */
 
-/**
- * @since Class available since Release 5.3.0
- */
+namespace PHPUnit\Util;
+
 class ConfigurationGenerator
 {
     /**
@@ -21,10 +20,9 @@ class ConfigurationGenerator
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/{phpunit_version}/phpunit.xsd"
          bootstrap="{bootstrap_script}"
-         backupGlobals="false"
+         forceCoversAnnotation="true"
          beStrictAboutCoversAnnotation="true"
          beStrictAboutOutputDuringTests="true"
-         beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
     <testsuite>
@@ -41,15 +39,16 @@ class ConfigurationGenerator
 EOT;
 
     /**
-     * @param  string $phpunitVersion
-     * @param  string $bootstrapScript
-     * @param  string $testsDirectory
-     * @param  string $srcDirectory
+     * @param string $phpunitVersion
+     * @param string $bootstrapScript
+     * @param string $testsDirectory
+     * @param string $srcDirectory
+     *
      * @return string
      */
     public function generateDefaultConfiguration($phpunitVersion, $bootstrapScript, $testsDirectory, $srcDirectory)
     {
-        return str_replace(
+        return \str_replace(
             [
                 '{phpunit_version}',
                 '{bootstrap_script}',
